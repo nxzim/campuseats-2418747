@@ -9,8 +9,7 @@ function VendorCard() {
   return (
     <article className="card vendor-card">
       <div className="thumb" aria-hidden="true">
-       {/* {vendor.name.charAt(0)} */}
-       FF
+       {vendor.name.charAt(0)}
       </div>
       <div>
         <h2>{vendor.name}</h2>
