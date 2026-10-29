@@ -8,6 +8,12 @@
 		},
 		{
 			"path": "../.."
+		},
+		{
+			"path": "../../../week3-codealong"
+		},
+		{
+			"path": "../../../week4-codealong"
 		}
 	],
 	"settings": {}
