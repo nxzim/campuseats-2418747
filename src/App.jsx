@@ -5,7 +5,7 @@ import MenuList from './components/MenuList.jsx'
 import Footer from './components/Footer.jsx'
 import Loading from './components/Loading.jsx'
 import ErrorMessage from './components/ErrorMessage.jsx'
-import CartPage from './components/CartPage.jsx'
+import CartPage from './pages/CartPage.jsx'
 
 function App() {
   const [vendors, setVendors] = useState([])
