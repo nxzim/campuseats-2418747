@@ -70,8 +70,17 @@ function App() {
           index === existingIndex ? { ...line, qty: line.qty + 1 } : line
         )
       }
-      return [...prevCart, { item, qty: 1 }]
+      //set default note
+      return [...prevCart, { item, qty: 1 , note : ''}]
     })
+  }
+  
+  function handleUpdateNote(itemId, nextNote) {
+  setCart((prevCart) =>
+    prevCart.map((line) =>
+      line.item.id === itemId ? { ...line, note: nextNote } : line
+      )
+    )
   }
 
   function handleChangeQty(itemId, delta) {
@@ -104,6 +113,7 @@ function App() {
         onChangeQty={handleChangeQty}
         onRemove={handleRemove}
         onPlaceOrder={handlePlaceOrder}
+        onUpdateNote={handleUpdateNote}
       />
     )
   } else if (view === 'done') {
