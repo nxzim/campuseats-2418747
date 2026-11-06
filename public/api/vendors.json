@@ -1,77 +1,139 @@
 [
   {
-  "id": "2418747_MelatiCafe",
-  "name": "Melati Cafe",
-  "location": "Mahallah Salahuddin, Block C",
-  "openHours": "7:00 am - 10:00 pm",
-  "isOpen": true,
-  "menu": [
-    {
-      "id": "my-1",
-      "name": "Chicken Chop Rice",
-      "description": "Crispy breaded chicken cutlet with black pepper sauce served over butter rice",
-      "price": 10.5,
-      "category": "Rice",
-      "available": true
-    },
-    {
-      "id": "my-2",
-      "name": "Spaghetti Bolognese",
-      "description": "Al dente pasta tossed in rich minced beef and tomato sauce topped with parmesan",
-      "price": 9.5,
-      "category": "Noodles",
-      "available": true
-    },
-    {
-      "id": "my-3",
-      "name": "Root Beer Float",
-      "description": "Classic sarsaparilla soda topped with a scoop of creamy vanilla ice cream",
-      "price": 4.5,
-      "category": "Drinks",
-      "available": false
-    },
-    {
-      "id": "my-4",
-      "name": "Nasi Lemak",
-      "description": "Coconut rice served with sambal, egg, peanuts, and anchovies",
-      "price": 6.5,
-      "category": "Rice",
-      "available": true
-    },
-    {
-      "id": "my-5",
-      "name": "Chicken Fried Rice",
-      "description": "Wok-fried rice with chicken and vegetables",
-      "price": 8,
-      "category": "Rice",
-      "available": true
-    },
-    {
-      "id": "my-6",
-      "name": "Mee Goreng",
-      "description": "Spicy stir-fried noodles with vegetables",
-      "price": 7,
-      "category": "Noodles",
-      "available": true
-    },
-    {
-      "id": "my-7",
-      "name": "Chicken Soup Noodles",
-      "description": "Noodles in a warm chicken broth",
-      "price": 8.5,
-      "category": "Noodles",
-      "available": true
-    },
-    {
-      "id": "my-8",
-      "name": "Iced Lemon Tea",
-      "description": "Refreshing black tea with lemon",
-      "price": 2.5,
-      "category": "Drinks",
-      "available": true
-    }
-  ]
-},
+    "id": "2418747-melati-cafe",
+    "name": "Melati Cafe",
+    "location": "Mahallah Salahuddin, Block C",
+    "openHours": "7:00 am - 10:00 pm",
+    "isOpen": true,
+    "menu": [
+      {
+        "id": "2418747-w1",
+        "name": "Crispy Chicken Chop",
+        "description": "Breaded deep-fried chicken chop served with black pepper sauce, crinkle fries, and coleslaw",
+        "price": 11.5,
+        "category": "Western Meat",
+        "popular": true,
+        "available": true
+      },
+      {
+        "id": "2418747-w2",
+        "name": "Grilled Chicken Thigh",
+        "description": "Herb-marinated grilled chicken thigh served with brown mushroom gravy and mashed potatoes",
+        "price": 12.0,
+        "category": "Western Meat",
+        "popular": true,
+        "available": true
+      },
+      {
+        "id": "2418747-w3",
+        "name": "Striploin Beef Steak",
+        "description": "Seared Australian striploin steak cooked medium, served with buttered sweet corn and herb butter",
+        "price": 18.5,
+        "category": "Western Meat",
+        "popular": false,
+        "available": true
+      },
+      {
+        "id": "2418747-i1",
+        "name": "Spaghetti Aglio Olio",
+        "description": "Al dente spaghetti tossed in olive oil, garlic, dried chili flakes, parsley, and cherry tomatoes",
+        "price": 9.0,
+        "category": "Italian Cuisine",
+        "popular": true,
+        "available": true
+      },
+      {
+        "id": "2418747-i2",
+        "name": "Creamy Fettuccine Carbonara",
+        "description": "Fettuccine pasta in a rich egg-yolk and parmesan cream sauce with crispy beef bacon bites",
+        "price": 11.5,
+        "category": "Italian Cuisine",
+        "popular": true,
+        "available": true
+      },
+      {
+        "id": "2418747-i3",
+        "name": "Genovese Basil Pesto Pasta",
+        "description": "Penne pasta coated in fragrant sweet basil pesto, crushed roasted nuts, and shaved parmesan cheese",
+        "price": 10.5,
+        "category": "Italian Cuisine",
+        "popular": false,
+        "available": true
+      },
+      {
+        "id": "2418747-i4",
+        "name": "Beef Bolognese Pasta",
+        "description": "Traditional slow-simmered minced beef and crushed plum tomato ragu served over spaghetti",
+        "price": 10.0,
+        "category": "Italian Cuisine",
+        "popular": false,
+        "available": true
+      },
+      {
+        "id": "2418747-d1",
+        "name": "Japanese Shio Pan",
+        "description": "Fluffy Japanese salted butter bread roll baked with a crisp, salted golden bottom crust",
+        "price": 4.5,
+        "category": "Desserts & Bread",
+        "popular": true,
+        "available": true
+      },
+      {
+        "id": "2418747-d2",
+        "name": "Classic Italian Tiramisu",
+        "description": "Espresso-soaked ladyfinger sponge layered with light mascarpone cream and dusted with cocoa",
+        "price": 7.5,
+        "category": "Desserts & Bread",
+        "popular": true,
+        "available": true
+      },
+      {
+        "id": "2418747-d3",
+        "name": "Kek Batik Indulgence",
+        "description": "Rich Malaysian chocolate-malt biscuit cake topped with a layer of velvety cream cheese ganache",
+        "price": 6.0,
+        "category": "Desserts & Bread",
+        "popular": false,
+        "available": true
+      },
+      {
+        "id": "2418747-d4",
+        "name": "Rosemary Garlic Focaccia",
+        "description": "Olive oil-infused Italian flatbread seasoned with fresh rosemary sprigs, sea salt flakes, and garlic",
+        "price": 5.0,
+        "category": "Desserts & Bread",
+        "popular": false,
+        "available": false
+      },
+      {
+        "id": "2418747-b1",
+        "name": "Vanilla Bean Milkshake",
+        "description": "Creamy whole milk blended with Madagascar vanilla ice cream and whipped cream topping",
+        "price": 6.5,
+        "category": "Drinks",
+        "popular": false,
+        "available": true
+      },
+      {
+        "id": "2418747-b2",
+        "name": "Chocolate Fudge Milkshake",
+        "description": "Decadent chocolate milkshake made with dark cocoa syrup, vanilla ice cream, and chocolate curls",
+        "price": 7.0,
+        "category": "Drinks",
+        "popular": true,
+        "available": true
+      },
+      {
+        "id": "2418747-b3",
+        "name": "Berry Mojito Mocktail",
+        "description": "Refreshing fizzy soda infused with muddled wild strawberries, fresh mint leaves, and lime juice",
+        "price": 5.5,
+        "category": "Drinks",
+        "popular": true,
+        "available": true
+      }
+    ]
+  },
   {
     "id": "mahallah-ali",
     "name": "Mahallah Ali",
