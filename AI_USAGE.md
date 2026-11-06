@@ -52,3 +52,33 @@ Changed: Modified the cart line structure to { item, qty, note: '' } so notes ar
 - One thing the AI got wrong and how I fixed it:
 
 When typing into the note box, the input was completely frozen. The AI's initial snippet did not pass the note update handler down through all layers of props (App.jsx -> CartPage.jsx -> CartItem.jsx), breaking the controlled input loop. I fixed it by explicitly adding onUpdateNote to the props of CartPage and CartItem, and ensuring onChange used capital C.
+
+## Week 4
+
+Tool(s): Copilot in VS Code, Gemini
+
+- What I asked for:
+
+How to refactor the entire app from local state switching to React Router (react-router) with <Routes>, dynamic route /vendor/:id, and layout nesting via <Outlet />.
+
+How to extract cart state, totals, and methods into a centralized CartProvider using the Context API to eliminate prop drilling.
+
+How to write custom hooks (useLocalStorage for cart and order persistence, useVendors for data fetching with AbortController, and useCart).
+
+How to advance Feature 7 (Order notes): persisting item notes within each placed order object and rendering them in OrdersPage.jsx.
+
+Debugging why OrdersPage rendered "No orders placed yet" even after checkout, and why the Cart navigation item was duplicated in the header.
+
+- What I kept, changed or rejected, and why:
+
+Kept: All custom hooks (useLocalStorage, useVendors, useCart) to isolate side effects and state persistence away from page components.
+
+Kept: Programmatic redirect using useNavigate('/orders') inside CartPage.jsx immediately after placeOrder(details) is executed.
+
+Changed: Refactored OrdersPage.jsx destructuring from { order } to { orders } to match the exact context value exposed by CartProvider.
+
+Rejected: Outdated import snippets referencing react-router-dom; kept clean modern imports from react-router per the lab specifications.
+
+- One thing the AI got wrong and how I fixed it:
+
+In OrdersPage.jsx, the generated boilerplate destructured const { order } = useCart(), but CartProvider.jsx actually provided orders (plural). Because order was undefined, placed orders were never rendered. I fixed this by changing the variable name to orders and mapping over each order's snapshot items array to render line notes properly.
