@@ -1,5 +1,6 @@
-import { useNavigate } from 'react-router'
+import { useNavigate , NavLink } from 'react-router'
 import { useCart } from '../hooks/useCart.js'
+import { useAuth } from '../hooks/useAuth.js'
 
 function Header() {
   const { count } = useCart()

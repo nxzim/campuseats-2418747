@@ -2,9 +2,9 @@ import { useLocalStorage } from '../hooks/UseLocalStorage.js'
 import { CartContext } from './cart-context.js'
 import { useAuth } from '../hooks/useAuth.js'
 
-export function CartProvider({ children }) {
-  const [cart, setCart] = useLocalStorage('campuseats-cart', [])
-  const [orders, setOrders] = useLocalStorage('campuseats-orders', [])
+function InnerCartProvider({ children, storageSuffix  }) {
+  const [cart, setCart] = useLocalStorage(`ce-cart-${storageSuffix}`, [])
+  const [orders, setOrders] = useLocalStorage(`ce-orders-${storageSuffix}`, [])
 
   const count = cart.reduce((sum, line) => sum + line.qty, 0)
   const total = cart.reduce((sum, line) => sum + line.item.price * line.qty, 0)
