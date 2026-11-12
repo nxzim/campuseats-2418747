@@ -1,5 +1,6 @@
 import { useLocalStorage } from '../hooks/UseLocalStorage.js'
 import { CartContext } from './cart-context.js'
+import { useAuth } from '../hooks/useAuth.js'
 
 export function CartProvider({ children }) {
   const [cart, setCart] = useLocalStorage('campuseats-cart', [])
@@ -67,4 +68,15 @@ export function CartProvider({ children }) {
   }
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>
+}
+export function CartProvider({ children }) {
+  const { user } = useAuth()
+  const storageSuffix = user ? user.uid : 'guest'
+
+  // Passing key={storageSuffix} resets state cleanly when switching accounts or logging out
+  return (
+    <InnerCartProvider key={storageSuffix} storageSuffix={storageSuffix}>
+      {children}
+    </InnerCartProvider>
+  )
 }
