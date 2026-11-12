@@ -1,10 +1,11 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import { useAuth } from '../hooks/useAuth.js'
 
 
 // One row in the cart. It shows data and reports clicks upward; it owns no state.
 function CartItem({ line, onChangeQty, onRemove, onUpdateNote }) {
   const { item, qty, note ='' } = line
+  const { user } = useAuth()
   return (
     <li className="cart-line">
       <div>
