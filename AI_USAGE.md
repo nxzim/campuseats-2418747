@@ -82,3 +82,19 @@ Rejected: Outdated import snippets referencing react-router-dom; kept clean mode
 - One thing the AI got wrong and how I fixed it:
 
 In OrdersPage.jsx, the generated boilerplate destructured const { order } = useCart(), but CartProvider.jsx actually provided orders (plural). Because order was undefined, placed orders were never rendered. I fixed this by changing the variable name to orders and mapping over each order's snapshot items array to render line notes properly.
+
+## Week 5
+
+Tool(s): Copilot in VS Code, Gemini
+
+- What I asked for:
+
+AuthProvider, ProtectedRoute, LoginPage / RegisterPage, fixing the Header fragment, and scoping cart/order persistence per user UID for Feature 7.
+
+- What I kept, changed or rejected, and why:
+
+Kept onAuthStateChanged cleanup, InnerCartProvider key scoping per UID, and useAuth() check in CartItem.jsx; rejected outdated 'react-router-dom' imports in favor of 'react-router'.
+
+- One thing the AI got wrong and how I fixed it:
+
+An unclosed JSX fragment (<>) in Header.jsx caused a syntax error when wrapping the greeting and logout button; fixed by adding the opening <>.
