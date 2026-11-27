@@ -1,29 +1,26 @@
-import { useLocalStorage } from '../hooks/UseLocalStorage.js'
+import { useMemo } from 'react'
 import { CartContext } from './cart-context.js'
+import { useLocalStorage } from '../hooks/useLocalStorage.js'
 import { useAuth } from '../hooks/useAuth.js'
 
-function InnerCartProvider({ children, storageSuffix  }) {
+function InnerCartProvider({ storageSuffix, children }) {
   const [cart, setCart] = useLocalStorage(`ce-cart-${storageSuffix}`, [])
-  const [orders, setOrders] = useLocalStorage(`ce-orders-${storageSuffix}`, [])
-
-  const count = cart.reduce((sum, line) => sum + line.qty, 0)
-  const total = cart.reduce((sum, line) => sum + line.item.price * line.qty, 0)
 
   function addToCart(item) {
-    setCart((prevCart) => {
-      const idx = prevCart.findIndex((line) => line.item.id === item.id)
-      if (idx > -1) {
-        return prevCart.map((line, i) =>
-          i === idx ? { ...line, qty: line.qty + 1 } : line
+    setCart((prev) => {
+      const found = prev.find((line) => line.item.id === item.id)
+      if (found) {
+        return prev.map((line) =>
+          line.item.id === item.id ? { ...line, qty: line.qty + 1 } : line
         )
       }
-      return [...prevCart, { item, qty: 1, note: '' }]
+      return [...prev, { item, qty: 1, note: '' }]
     })
   }
 
   function changeQty(itemId, delta) {
-    setCart((prevCart) =>
-      prevCart
+    setCart((prev) =>
+      prev
         .map((line) =>
           line.item.id === itemId ? { ...line, qty: line.qty + delta } : line
         )
@@ -32,48 +29,48 @@ function InnerCartProvider({ children, storageSuffix  }) {
   }
 
   function updateNote(itemId, note) {
-    setCart((prevCart) =>
-      prevCart.map((line) =>
+    setCart((prev) =>
+      prev.map((line) =>
         line.item.id === itemId ? { ...line, note } : line
       )
     )
   }
 
   function removeFromCart(itemId) {
-    setCart((prevCart) => prevCart.filter((line) => line.item.id !== itemId))
+    setCart((prev) => prev.filter((line) => line.item.id !== itemId))
   }
 
-  function placeOrder(details) {
-    const newOrder = {
-      id: Date.now().toString(),
-      ...details,
-      items: cart, // saves cart lines with their notes (Feature 7)
-      total,
-      placedAt: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-    }
-    setOrders((prev) => [newOrder, ...prev])
+  function clearCart() {
     setCart([])
   }
 
+  const count = useMemo(
+    () => cart.reduce((sum, line) => sum + line.qty, 0),
+    [cart]
+  )
+  const total = useMemo(
+    () => cart.reduce((sum, line) => sum + line.item.price * line.qty, 0),
+    [cart]
+  )
+
   const value = {
     cart,
-    orders,
     count,
     total,
     addToCart,
     changeQty,
     updateNote,
     removeFromCart,
-    placeOrder,
+    clearCart,
   }
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }
+
 export function CartProvider({ children }) {
   const { user } = useAuth()
   const storageSuffix = user ? user.uid : 'guest'
 
-  // Passing key={storageSuffix} resets state cleanly when switching accounts or logging out
   return (
     <InnerCartProvider key={storageSuffix} storageSuffix={storageSuffix}>
       {children}
