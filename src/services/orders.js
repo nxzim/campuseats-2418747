@@ -1,6 +1,16 @@
-import { collection, doc, onSnapshot, query, where, serverTimestamp, writeBatch } 
-from 'firebase/firestore'
 import { db } from '../firebase.js'
+import { collection, doc, onSnapshot, query, where, serverTimestamp, writeBatch,updateDoc, deleteDoc } from 'firebase/firestore'
+// Update: change ONE field. The other fields of the order stay as they are.
+
+export function changePickupTime(orderId, pickupTime) {
+  return updateDoc(doc(db, 'orders', orderId), { pickupTime })
+}
+// Delete: remove the whole document.
+export function cancelOrder(orderId) {
+  // TODO 5: return deleteDoc(...) for the document orders/{orderId}
+  // Hint: the same doc(db, 'orders', orderId) as changePickupTime
+  return deleteDoc(doc(db, 'orders', orderId))
+}
  
 // One order per vendor in the cart, all in a single batch.
 export async function placeOrders(user, cart, details) {

@@ -1,6 +1,7 @@
 import { Link } from 'react-router'
 import { useMyOrders } from '../hooks/useMyOrders.js'
 import OrderStatus from '../components/OrderStatus.jsx'
+import OrderActions from '../components/OrderActions.jsx'
 
 function OrdersPage() {
   const { orders, loading, error } = useMyOrders()
@@ -50,6 +51,7 @@ function OrdersPage() {
             </ul>
 
             <OrderStatus status={order.status} />
+            {order.status === 'Received' && <OrderActions order={order} />}
           </li>
         ))}
       </ul>
