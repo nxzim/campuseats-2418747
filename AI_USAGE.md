@@ -98,3 +98,18 @@ Kept onAuthStateChanged cleanup, InnerCartProvider key scoping per UID, and useA
 - One thing the AI got wrong and how I fixed it:
 
 An unclosed JSX fragment (<>) in Header.jsx caused a syntax error when wrapping the greeting and logout button; fixed by adding the opening <>.
+
+## Week 6
+
+- Tool used: Gemini (Guided Learning)
+
+- What I asked for:
+
+  - Wiring `defaultName` into `CheckoutForm.jsx` and refactoring `CartPage.jsx` to call `placeOrders`, clear the cart, and display Firebase error alerts.
+  - Debugging a function-naming mismatch (`addToCart` vs. `addItem`) in `CartProvider.jsx` and fixing a syntax/import issue in `OrdersPage.jsx`.
+  - Implementing Firestore `updateDoc` / `deleteDoc` actions (`OrderActions.jsx`) and updating `placeOrders` in `src/services/orders.js` to save per-item `note` fields (`note: note ?? ''`).
+
+- How I verified and adapted the output:
+
+  - Tested adding items with and without notes to the cart, placing orders, and verifying live updates in both `/orders` and the Firebase Console (`orders` collection).
+  - Kept my existing `CartProvider` function names (`addToCart`) and `CheckoutForm` validation logic intact while integrating the Firestore service calls.
