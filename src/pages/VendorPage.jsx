@@ -1,42 +1,28 @@
-import { useParams, Link } from 'react-router'
-import { useVendors } from '../hooks/useVendors.js'
+import { Link, useParams } from 'react-router'
+import { useVendor } from '../hooks/useVendor.js'
 import MenuList from '../components/MenuList.jsx'
-import Loading from '../components/Loading.jsx'
-import ErrorMessage from '../components/ErrorMessage.jsx'
-
+import { Loading, ErrorMessage } from '../components/Status.jsx'
+ 
 function VendorPage() {
   const { id } = useParams()
-  const { vendors, loading, error, reload } = useVendors()
-
+  const { vendor, menu, loading, error } = useVendor(id)
+ 
   if (loading) return <Loading />
-  if (error) return <ErrorMessage message={error} onRetry={reload} />
-
-  const vendor = vendors.find((v) => v.id === id)
-
-  if (!vendor) {
-    return (
-      <div className="card">
-        <h2>Vendor not found</h2>
-        <p className="muted">We couldn't find a vendor with ID: {id}</p>
-        <Link to="/" className="btn" style={{ display: 'inline-block', marginTop: '1rem' }}>
-          Back to vendors
-        </Link>
-      </div>
-    )
-  }
-
+  if (error) return <ErrorMessage message={error} onRetry={() => 
+window.location.reload()} />
+  if (!vendor) return <p>Vendor not found. <Link to="/">Back to vendors</Link></p>
+ 
+  // Each cart line must know its vendor, so orders can be split per vendor.
+  const items = menu.map((item) => ({ ...item, vendorName: vendor.name }))
+ 
   return (
     <section>
-      <div style={{ marginBottom: '1.5rem' }}>
-        <Link to="/" className="link" style={{ color: 'var(--primary, #006644)' }}>
-          &larr; All vendors
-        </Link>
-        <h2 className="section-title" style={{ marginTop: '0.5rem' }}>{vendor.name}</h2>
-        <p className="muted">{vendor.location} &middot; Open: {vendor.openHours}</p>
-      </div>
-      <MenuList items={vendor.menu} />
+      <p><Link to="/">← All vendors</Link></p>
+      <h2 className="section-title">{vendor.name}</h2>
+      <p className="muted">{vendor.location} · {vendor.openHours}</p>
+      <MenuList items={items} />
     </section>
   )
 }
-
+ 
 export default VendorPage
